@@ -16,7 +16,7 @@
           <img
             alt="Midone Tailwind HTML Admin Template"
             class="w-6"
-            src="@/assets/images/logo.svg"
+            src="@/assets/images/logo.png"
           />
           <span class="text-white text-lg ml-3">
             Mid<span class="font-medium">one</span>
@@ -177,7 +177,7 @@
           >
             <img
               alt="Midone Tailwind HTML Admin Template"
-              :src="require(`@/assets/images/${$f()[9].photos[0]}`)"
+              :src="require(`@/assets/avatars/user-1.png`)"
             />
           </div>
           <div class="dropdown-box w-56">

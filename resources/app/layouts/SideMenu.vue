@@ -13,11 +13,11 @@
         >
           <img
             alt="Midone Tailwind HTML Admin Template"
-            class="w-6"
-            src="@/assets/images/logo.svg"
+            class="w-12"
+            src="@/assets/images/logo.png"
           />
           <span class="hidden xl:block text-white text-lg ml-3">
-            Mid<span class="font-medium">one</span>
+            Nos<span class="font-medium">KingDom</span>
           </span>
         </router-link>
         <!-- END: Logo -->

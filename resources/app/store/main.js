@@ -2,7 +2,7 @@ import * as types from "./mutation-types";
 
 const state = () => {
   return {
-    darkMode: false
+    darkMode: true
   };
 };
 
