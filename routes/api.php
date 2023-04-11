@@ -27,4 +27,7 @@ Route::group(['middleware' => 'myAuth'], function ($router) {
     Route::get('/getRankLevel', 'RankController@getRankLevel');
     Route::post('/changeEmail', 'SettingsController@changeEmail');
     Route::post('/changePassword', 'SettingsController@changePassword');
+    Route::get('/getCategories', 'ShopController@getCategories');
+    Route::get('/getShopItems', 'ShopController@getShopItems');
+    Route::get('/getCharacters', 'ShopController@getCharacters');
 });

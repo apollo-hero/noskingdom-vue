@@ -25,7 +25,7 @@
                           </div>
                           <div class="text-gray-600 mt-2">Welcome back to Noskingdom!</div>
                       </div>
-                      <div class="p-5"> <label>Username</label> <input v-model="username" type="text" class="input w-full border mt-2" placeholder="apollon"> </div>
+                      <div class="p-5"> <label>Username</label> <input v-model="username" type="text" class="input w-full border mt-2" placeholder="username"> </div>
                       <div class="p-5"> <label>Email</label> <input v-model="email" type="email" class="input w-full border mt-2" placeholder="example@gmail.com"> </div>
                       <div class="p-5"> <label>Password</label> <input v-model="password" type="password" class="input w-full border mt-2"> </div>
                       <div class="p-5"> <label>Confirm Password</label> <input v-model="confirm_password" type="password" class="input w-full border mt-2"> </div>

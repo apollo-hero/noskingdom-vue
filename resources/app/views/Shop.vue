@@ -10,15 +10,23 @@
             <!-- BEGIN: File Manager Menu -->
             <div class="intro-y box p-5 mt-6">
                 <div class="mt-1">
-                    <input
-                        type="checkbox"
-                        class="input border mr-2"
-                        id="horizontal-checkbox-chris-evans"
-                    />Images
+                    Search
                 </div>
                 <div
                     class="border-t border-gray-200 dark:border-dark-5 mt-5 pt-5"
-                ></div>
+                >
+                    <input v-model="search_text" type="text" class="input w-full border mt-2" placeholder="item name">
+                </div>
+                <div class="mt-6 pt-5 border-t border-gray-200 dark:border-dark-5">
+                    Categories
+                </div>
+                <div
+                    class="border-t border-gray-200 dark:border-dark-5 mt-5 pt-5"
+                >
+                    <a v-for="category, index in categories" :key="index" class="flex items-center mt-2" href="javascript:;">
+                        <LayersIcon class="w-4 h-4 mr-2" /> {{ category.name }}
+                    </a>
+                </div>
             </div>
             <!-- END: File Manager Menu -->
         </div>
@@ -26,57 +34,36 @@
             <!-- BEGIN: Directory & Files -->
             <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 mt-5">
                 <div
-                    v-for="(faker, fakerKey) in $f()"
-                    :key="fakerKey"
+                    v-for="(item, index) in shopItems"
+                    :key="`item-${index}`"
                     class="intro-y col-span-6 sm:col-span-4 md:col-span-3 xxl:col-span-2"
                 >
                     <div
                         class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in"
                     >
                         <a
-                            v-if="faker.files[0].type == 'Empty Folder'"
                             href="javascript:;"
-                            class="w-3/5 file__icon file__icon--empty-directory mx-auto"
+                            class="w-3/5 file__icon file__icon--image mx-auto"
                             data-toggle="modal"
                             data-target="#buy_modal"
-                        ></a>
-                        <a
-                            v-else-if="faker.files[0].type == 'Folder'"
-                            href=""
-                            class="w-3/5 file__icon file__icon--directory mx-auto"
-                        ></a>
-                        <a
-                            v-else-if="faker.files[0].type == 'Image'"
-                            href=""
-                            class="w-3/5 file__icon file__icon--image mx-auto"
+                            @click="handleItem(item)"
                         >
                             <div class="file__icon--image__preview image-fit">
                                 <img
                                     alt="Midone Tailwind HTML Admin Template"
                                     :src="
-                                        require(`@/assets/images/${$_.toLower(
-                                            faker.files[0]['file_name']
-                                        )}`)
+                                        require(`@/assets/items/${item.image}.png`)
                                     "
                                 />
                             </div>
                         </a>
                         <a
-                            v-else
-                            href=""
-                            class="w-3/5 file__icon file__icon--file mx-auto"
-                        >
-                            <div class="file__icon__file-name">
-                                {{ faker.files[0].type }}
-                            </div>
-                        </a>
-                        <a
                             href=""
                             class="block font-medium mt-4 text-center truncate"
-                            >{{ faker.files[0].file_name }}</a
+                            >{{ item.name }}</a
                         >
                         <div class="text-gray-600 text-xs text-center">
-                            {{ faker.files[0].size }}
+                            {{ item.price }}
                         </div>
                     </div>
                 </div>
@@ -144,77 +131,118 @@
                     class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5"
                 >
                     <h2 class="font-medium text-base mr-auto">
-                        Broadcast Message
+                        {{item.name}}
                     </h2>
                 </div>
                 <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                    <div class="col-span-12 sm:col-span-6">
-                        <label>From</label>
-                        <input
-                            type="text"
-                            class="input w-full border mt-2 flex-1"
-                            placeholder="example@gmail.com"
-                        />
+                    <div class="flex col-span-12">
+                        <img v-if="item.name" :src="require(`@/assets/items/${item.image}.png`)"/>
+                        <div class="flex items-center ml-3">{{ item.description }}</div>
                     </div>
-                    <div class="col-span-12 sm:col-span-6">
-                        <label>To</label>
-                        <input
-                            type="text"
-                            class="input w-full border mt-2 flex-1"
-                            placeholder="example@gmail.com"
-                        />
-                    </div>
-                    <div class="col-span-12 sm:col-span-6">
-                        <label>Subject</label>
-                        <input
-                            type="text"
-                            class="input w-full border mt-2 flex-1"
-                            placeholder="Important Meeting"
-                        />
-                    </div>
-                    <div class="col-span-12 sm:col-span-6">
-                        <label>Has the Words</label>
-                        <input
-                            type="text"
-                            class="input w-full border mt-2 flex-1"
-                            placeholder="Job, Work, Documentation"
-                        />
-                    </div>
-                    <div class="col-span-12 sm:col-span-6">
-                        <label>Doesn't Have</label>
-                        <input
-                            type="text"
-                            class="input w-full border mt-2 flex-1"
-                            placeholder="Job, Work, Documentation"
-                        />
-                    </div>
-                    <div class="col-span-12 sm:col-span-6">
-                        <label>Size</label>
-                        <select class="input w-full border mt-2 flex-1">
-                            <option>10</option>
-                            <option>25</option>
-                            <option>35</option>
-                            <option>50</option>
-                        </select>
+                    <div class="col-span-12 sm:col-span-12">
+                        <label>price</label>
+                        <span>{{ item.price * quantity }}</span>
                     </div>
                 </div>
                 <div
-                    class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5"
+                    class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5 grid grid-cols-12 gap-4 row-gap-3"
                 >
-                    <button
-                        type="button"
-                        class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1"
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        type="button"
-                        class="button w-20 bg-theme-1 text-white"
-                    >
-                        Send
-                    </button>
+                    <div class="col-span-12 sm:col-span-6">
+                        <select v-model="character" class="input w-full border mt-2 flex-1">
+                            <option>select character</option> 
+                            <option v-for="t, index in characters" :key="index" :value="t.Id">{{ t.Name }}</option> 
+                        </select>
+                    </div>
+                    <div class="col-span-12 sm:col-span-3">
+                        <input
+                            v-model="quantity"
+                            type="number"
+                            class="input w-full border mt-2 flex-1"
+                            placeholder=""
+                        />
+                    </div>
+
+                    <div class="col-span-12 sm:col-span-3">
+                        <button
+                            @click="buy()"
+                            type="button"
+                            class="button w-20 bg-theme-1 text-white mt-2 inline-flex items-center"
+                        >
+                            BUY
+                            <LoadingIcon
+                                v-if="loading"
+                                icon="oval"
+                                color="white"
+                                class="w-4 h-4 ml-auto"
+                            />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+
+import axios from 'axios';
+import ImageZoom from './ImageZoom.vue';
+
+export default {
+  components: { ImageZoom },
+    data() {
+        return {
+            search_text: '',
+            categories: [],
+            shopItems: [],
+            item: {},
+            characters: [],
+            quantity: 1,
+            character: null,
+            loading: false
+        }
+    },
+    mounted(){
+        this.getCategories();
+        this.getShopItems();
+    }, 
+    methods : {
+        getCategories(){
+            let self = this;
+            axios.get('/api/getCategories')
+                .then((res)=>{
+                    self.categories = res.data.categories;
+                })
+        },
+
+        getShopItems(){
+            let self = this;
+            axios.get('/api/getShopItems')
+                .then((res)=>{
+                    self.shopItems = res.data.shopItems;
+                })
+        },
+
+        handleItem(item){
+            let self = this;
+
+            self.item = item;
+        },
+
+        getCharacters(){
+            let self = this;
+            axios.get('/api/getCharacters')
+                .then((res)=>{
+                    self.characters = res.data.characters;
+                })
+        },
+
+        buy() {
+            let self = this;
+            self.loading = true;
+
+        }
+
+    }
+}
+</script>

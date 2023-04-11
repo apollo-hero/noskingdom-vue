@@ -31,12 +31,12 @@
               >
                 <ActivityIcon class="w-4 h-4 mr-2" /> Personal Information
               </a>
-              <a class="flex items-center mt-5" href="">
+              <a class="flex items-center mt-5" href="javascript:;">
                 <LockIcon class="w-4 h-4 mr-2" /> Change Password
               </a>
             </div>
             <div class="p-5 border-t border-gray-200 dark:border-dark-5">
-              <a class="flex items-center" href="">
+              <a class="flex items-center" href="javascript:;">
                 <MailIcon class="w-4 h-4 mr-2" /> Email Settings
               </a>
             </div>
