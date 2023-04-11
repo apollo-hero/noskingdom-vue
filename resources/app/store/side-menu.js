@@ -29,7 +29,7 @@ const state = () => {
       },
       {
         icon: "SettingsIcon",
-        pageName: "side-menu-file-manager",
+        pageName: "settings",
         title: "Settings"
       },
       {

@@ -31,9 +31,9 @@
                         <div
                             class="w-24 sm:w-40 truncate sm:whitespace-normal font-medium text-lg"
                         >
-                            {{ $f()[0].users[0].name }}
+                            {{ this.$store.state.main.user.Name }}
                         </div>
-                        <div class="text-gray-600">{{ $f()[0].jobs[0] }}</div>
+                        <div class="text-gray-600">{{ this.$store.state.main.user.Email }}</div>
                     </div>
                 </div>
                 <div
@@ -42,35 +42,32 @@
                     <div
                         class="truncate sm:whitespace-normal flex items-center"
                     >
-                        <MailIcon class="w-4 h-4 mr-2" />
-                        {{ $f()[0].users[0].email }}
+                        {{  }}
                     </div>
                     <div
                         class="truncate sm:whitespace-normal flex items-center mt-3"
                     >
-                        <InstagramIcon class="w-4 h-4 mr-2" /> Instagram
-                        {{ $f()[0].users[0].name }}
+                        {{ }}
                     </div>
                     <div
                         class="truncate sm:whitespace-normal flex items-center mt-3"
                     >
-                        <TwitterIcon class="w-4 h-4 mr-2" /> Twitter
-                        {{ $f()[0].users[0].name }}
+                        {{  }}
                     </div>
                 </div>
                 <div
                     class="mt-6 lg:mt-0 flex-1 px-5 border-t lg:border-0 border-gray-200 dark:border-dark-5 pt-5 lg:pt-0"
                 >
                     <div class="font-medium text-center lg:text-left lg:mt-5">
-                        Sales Growth
+                        
                     </div>
                     <div
                         class="flex items-center justify-center lg:justify-start mt-2"
                     >
                         <div class="mr-2 w-20 flex">
-                            USP:
+                            
                             <span class="ml-3 font-medium text-theme-9"
-                                >+23%</span
+                                ></span
                             >
                         </div>
                         <div class="w-32 lg:w-40">
@@ -84,9 +81,9 @@
                         class="flex items-center justify-center lg:justify-start"
                     >
                         <div class="mr-2 w-20 flex">
-                            STP:
+                            
                             <span class="ml-3 font-medium text-theme-6"
-                                >-2%</span
+                                ></span
                             >
                         </div>
                         <div class="w-32 lg:w-40">
@@ -206,24 +203,8 @@
 </template>
 
 <script>
-import ReportLineChart from "@/components/ReportLineChart";
-import ReportDonutChart from "@/components/ReportDonutChart";
-import ReportPieChart from "@/components/ReportPieChart";
-import ReportMap from "@/components/ReportMap";
-import ReportDonutChart1 from "@/components/ReportDonutChart1";
-import SimpleLineChart1 from "@/components/SimpleLineChart1";
-import VueSlickCarousel from "vue-slick-carousel";
 
 export default {
-    components: {
-        ReportLineChart,
-        ReportDonutChart,
-        ReportPieChart,
-        ReportMap,
-        ReportDonutChart1,
-        SimpleLineChart1,
-        VueSlickCarousel
-    },
     data() {
         return {
             salesReportFilter: ""

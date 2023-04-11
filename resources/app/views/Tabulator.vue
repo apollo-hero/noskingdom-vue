@@ -46,10 +46,9 @@
                                 v-model="filter.field"
                                 class="input w-full sm:w-32 xxl:w-full mt-2 sm:mt-0 sm:w-auto border"
                             >
-                                <option value="name">Name</option>
-                                <option value="category">Category</option>
-                                <option value="remaining_stock"
-                                    >Remaining Stock</option
+                                <option value="name">Level</option>
+                                <option value="category">Class</option>
+                                <option value="remaining_stock">Name</option
                                 >
                             </select>
                         </div>
@@ -517,7 +516,7 @@ export default {
     },
     mounted() {
         this.table = new Tabulator(this.$refs.table, {
-            ajaxURL: "https://dummy-data.left4code.com",
+            ajaxURL: "/api/getRankLevel",
             ajaxFiltering: true,
             ajaxSorting: true,
             printAsHtml: true,
@@ -552,9 +551,6 @@ export default {
               <div class="font-medium whitespace-no-wrap">${
                   cell.getData().name
               }</div>
-              <div class="text-gray-600 text-xs whitespace-no-wrap">${
-                  cell.getData().category
-              }</div>
             </div>`;
                     }
                 },
@@ -571,14 +567,6 @@ export default {
                 <div class="intro-x w-10 h-10 image-fit">
                   <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="${require("@/assets/images/" +
                       cell.getData().images[0])}">
-                </div>
-                <div class="intro-x w-10 h-10 image-fit -ml-5">
-                  <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="${require("@/assets/images/" +
-                      cell.getData().images[1])}">
-                </div>
-                <div class="intro-x w-10 h-10 image-fit -ml-5">
-                  <img alt="Midone Tailwind HTML Admin Template" class="rounded-full" src="${require("@/assets/images/" +
-                      cell.getData().images[2])}">
                 </div>
             </div>`;
                     }
@@ -601,13 +589,9 @@ export default {
                     print: false,
                     download: false,
                     formatter(cell) {
-                        return `<div class="flex items-center lg:justify-center ${
-                            cell.getData().status
-                                ? "text-theme-9"
-                                : "text-theme-6"
-                        }">
-              <i data-feather="check-square" class="w-4 h-4 mr-2"></i> ${
-                  cell.getData().status ? "Active" : "Inactive"
+                        return `<div class="flex items-center lg:justify-center">
+              ${
+                  cell.getData().Name 
               }
             </div>`;
                     }
@@ -622,79 +606,14 @@ export default {
                     print: false,
                     download: false,
                     formatter() {
-                        return `<div class="flex lg:justify-center items-center">
-              <a class="flex items-center mr-3" href="">
-                <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
-              </a>
-              <a class="flex items-center text-theme-6" href="">
-                <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
-              </a>
+                        return `<div class="flex lg:justify-center items-center">  ${
+                  cell.getData().Level 
+              }
+              
+             
             </div>`;
                     }
                 },
-
-                // For print format
-                {
-                    title: "PRODUCT NAME",
-                    field: "name",
-                    visible: false,
-                    print: true,
-                    download: true
-                },
-                {
-                    title: "CATEGORY",
-                    field: "category",
-                    visible: false,
-                    print: true,
-                    download: true
-                },
-                {
-                    title: "REMAINING STOCK",
-                    field: "remaining_stock",
-                    visible: false,
-                    print: true,
-                    download: true
-                },
-                {
-                    title: "STATUS",
-                    field: "status",
-                    visible: false,
-                    print: true,
-                    download: true,
-                    formatterPrint(cell) {
-                        return cell.getValue() ? "Active" : "Inactive";
-                    }
-                },
-                {
-                    title: "IMAGE 1",
-                    field: "images",
-                    visible: false,
-                    print: true,
-                    download: true,
-                    formatterPrint(cell) {
-                        return cell.getValue()[0];
-                    }
-                },
-                {
-                    title: "IMAGE 2",
-                    field: "images",
-                    visible: false,
-                    print: true,
-                    download: true,
-                    formatterPrint(cell) {
-                        return cell.getValue()[1];
-                    }
-                },
-                {
-                    title: "IMAGE 3",
-                    field: "images",
-                    visible: false,
-                    print: true,
-                    download: true,
-                    formatterPrint(cell) {
-                        return cell.getValue()[2];
-                    }
-                }
             ],
             renderComplete() {
                 feather.replace({
