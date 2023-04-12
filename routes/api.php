@@ -24,10 +24,19 @@ Route::group(['middleware' => 'api','cors'], function ($router) {
 });
 
 Route::group(['middleware' => 'myAuth'], function ($router) {
+    Route::get('/logout'. 'AuthController@logout');
+
     Route::get('/getRankLevel', 'RankController@getRankLevel');
+    Route::get('/getRankHero', 'RankController@getRankHero');
+    Route::get('/getRankReput', 'RankController@getRankReput');
+
     Route::post('/changeEmail', 'SettingsController@changeEmail');
     Route::post('/changePassword', 'SettingsController@changePassword');
+
     Route::get('/getCategories', 'ShopController@getCategories');
     Route::get('/getShopItems', 'ShopController@getShopItems');
     Route::get('/getCharacters', 'ShopController@getCharacters');
+
+    Route::get('/getLinks', 'SettingsController@getLinks');
+    Route::get('/getDiscordLink', 'SettingsController@getDiscordLink');
 });

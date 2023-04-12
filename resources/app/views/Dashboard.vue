@@ -121,76 +121,26 @@
                             </h2>
                         </div>
                         <div class="p-5">
-                            <div class="relative flex items-center">
+                            <div v-for="character, index in characters" :key="index" class="relative flex items-center mt-5">
                                 <div class="w-12 h-12 flex-none image-fit">
                                     <img
                                         alt="Midone Tailwind HTML Admin Template"
                                         class="rounded-full"
-                                        :src="
-                                            require(`@/assets/avatars/user-1.png`)
-                                        "
+                                        :src="getCharacterImage(character)"
                                     />
                                 </div>
                                 <div class="ml-4 mr-auto">
                                     <a href="" class="font-medium">{{
-                                        $f()[0].users[0].name
+                                        character.Name
                                     }}</a>
                                     <div class="text-gray-600 mr-5 sm:mr-5">
-                                        Bootstrap 4 HTML Admin Template
+                                        {{ character.CreatedAt}}
                                     </div>
                                 </div>
                                 <div
                                     class="font-medium text-gray-700 dark:text-gray-600"
                                 >
-                                    +$19
-                                </div>
-                            </div>
-                            <div class="relative flex items-center mt-5">
-                                <div class="w-12 h-12 flex-none image-fit">
-                                    <img
-                                        alt="Midone Tailwind HTML Admin Template"
-                                        class="rounded-full"
-                                        :src="
-                                            require(`@/assets/avatars/user-1.png`)
-                                        "
-                                    />
-                                </div>
-                                <div class="ml-4 mr-auto">
-                                    <a href="" class="font-medium">{{
-                                        $f()[1].users[0].name
-                                    }}</a>
-                                    <div class="text-gray-600 mr-5 sm:mr-5">
-                                        Tailwind HTML Admin Template
-                                    </div>
-                                </div>
-                                <div
-                                    class="font-medium text-gray-700 dark:text-gray-600"
-                                >
-                                    +$25
-                                </div>
-                            </div>
-                            <div class="relative flex items-center mt-5">
-                                <div class="w-12 h-12 flex-none image-fit">
-                                    <img
-                                        alt="Midone Tailwind HTML Admin Template"
-                                        class="rounded-full"
-                                        :src="
-                                            require(`@/assets/avatars/user-1.png`)
-                                        "
-                                    />
-                                </div>
-                                <div class="ml-4 mr-auto">
-                                    <a href="" class="font-medium">{{
-                                        $f()[2].users[0].name
-                                    }}</a>
-                                    <div class="text-gray-600 mr-5 sm:mr-5">
-                                        Vuejs HTML Admin Template
-                                    </div>
-                                </div>
-                                <div
-                                    class="font-medium text-gray-700 dark:text-gray-600"
-                                >
-                                    +$21
+                                    Level - {{character.Level}}
                                 </div>
                             </div>
                         </div>
@@ -203,12 +153,16 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     data() {
         return {
-            salesReportFilter: ""
+            salesReportFilter: "",
+            characters: []
         };
+    },
+    mounted(){
+        this.getCharacters();
     },
     methods: {
         prevImportantNotes() {
@@ -216,6 +170,25 @@ export default {
         },
         nextImportantNotes() {
             this.$refs["important-notes"].next();
+        },
+        getCharacters(){
+            let self = this;
+            axios.get('/api/getCharacters')
+                .then((res)=>{
+                    self.characters = res.data.characters;
+                })
+        },
+
+        getCharacterImage(t){
+            let image = t.Class == 0 && t.Gender == 0 ? '32000' :
+                                    t.Class == 0 && t.Gender == 1 ? '32020' :
+                                    t.Class == 1 && t.Gender == 0 ? '32040' :
+                                    t.Class == 1 && t.Gender == 1 ? '32060' :
+                                    t.Class == 2 && t.Gender == 0 ? '32080' :
+                                    t.Class == 2 && t.Gender == 1 ? '32100' :
+                                    t.Class == 3 && t.Gender == 0 ? '32120' : '32140';
+
+            return require(`@/assets/items/` + image + `.png`);
         }
     }
 };

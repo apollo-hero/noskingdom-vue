@@ -1,11 +1,11 @@
 const state = () => {
   return {
     menu: [
-      {
-        icon: "HomeIcon",
-        pageName: "side-menu-dashboard",
-        title: "Dashboard"
-      },
+      // {
+      //   icon: "HomeIcon",
+      //   pageName: "side-menu-dashboard",
+      //   title: "Dashboard"
+      // },
       {
         icon: "DownloadIcon",
         pageName: "download-luncher",

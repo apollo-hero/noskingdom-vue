@@ -1,6 +1,5 @@
 <template>
   <div>
-    <DarkModeSwitcher />
     <MobileMenu />
     <div class="flex">
       <!-- BEGIN: Side Menu -->
@@ -156,6 +155,9 @@ export default {
   computed: {
     sideMenu() {
       return this.nestedMenu(this.$store.state.sideMenu.menu);
+    },
+    darkMode() {
+      return this.$store.state.main.darkMode;
     }
   },
   watch: {
@@ -168,6 +170,7 @@ export default {
       .removeClass("login")
       .addClass("app");
     this.formattedMenu = this.$h.assign(this.sideMenu);
+    this.setDarkModeClass();
   },
   methods: {
     nestedMenu(menu) {
@@ -234,6 +237,11 @@ export default {
           complete: done
         }
       );
+    },
+    setDarkModeClass() {
+      this.darkMode
+        ? cash("html").addClass("dark")
+        : cash("html").removeClass("dark");
     }
   }
 };

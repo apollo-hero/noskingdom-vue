@@ -14,7 +14,7 @@
                 <img
                   alt="Midone Tailwind HTML Admin Template"
                   class="rounded-full"
-                  :src="require(`@/assets/images/${$f()[0].photos[0]}`)"
+                  :src="require(`@/assets/avatars/user-2.jpg`)"
                 />
               </div>
               <div class="ml-4 mr-auto">
@@ -25,18 +25,22 @@
               </div>
             </div>
             <div class="p-5 border-t border-gray-200 dark:border-dark-5">
-              <a
-                class="flex items-center text-theme-1 dark:text-theme-10 font-medium"
-                href=""
+              <a 
+                 data-toggle="tab"
+                 data-target="#change_password" 
+                 class="flex items-center mt-5" 
+                 href="javascript:;"
               >
-                <ActivityIcon class="w-4 h-4 mr-2" /> Personal Information
-              </a>
-              <a class="flex items-center mt-5" href="javascript:;">
                 <LockIcon class="w-4 h-4 mr-2" /> Change Password
               </a>
             </div>
             <div class="p-5 border-t border-gray-200 dark:border-dark-5">
-              <a class="flex items-center" href="javascript:;">
+              <a 
+                data-toggle="tab"
+                data-target="#change_email" 
+                class="flex items-center" 
+                href="javascript:;"
+              >
                 <MailIcon class="w-4 h-4 mr-2" /> Email Settings
               </a>
             </div>
@@ -46,9 +50,9 @@
           </div>
         </div>
         <!-- END: Profile Menu -->
-        <div class="col-span-12 lg:col-span-8 xxl:col-span-9">
+        <div class="col-span-12 lg:col-span-8 xxl:col-span-9 tab-content">
           <!-- BEGIN: Change Password -->
-        <div class="intro-y box lg:mt-5">
+        <div class="intro-y box lg:mt-5 tab-content__pane" id="change_password">
           <div
             class="flex items-center p-5 border-b border-gray-200 dark:border-dark-5"
           >
@@ -89,7 +93,7 @@
         </div>
         <!-- END: Change Password -->
         <!-- BEGIN: Change Email -->
-        <div class="intro-y box lg:mt-5">
+        <div class="intro-y box lg:mt-5 tab-content__pane" id="change_email">
           <div
             class="flex items-center p-5 border-b border-gray-200 dark:border-dark-5"
           >

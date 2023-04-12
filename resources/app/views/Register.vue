@@ -1,6 +1,5 @@
 <template>
   <div>
-      <DarkModeSwitcher />
       <div class="container sm:px-10">
           <div class="block xl:grid gap-4">
               <!-- BEGIN: Login Form -->
@@ -53,14 +52,10 @@
 </template>
 
 <script>
-import DarkModeSwitcher from "@/components/DarkModeSwitcher";
 import axios from "axios";
 import Toastify from "toastify-js";
 
 export default {
-  components: {
-      DarkModeSwitcher
-  },
   data(){
     return {
       username: "",

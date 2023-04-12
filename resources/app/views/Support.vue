@@ -13,11 +13,13 @@
             For any game questions, don't forget that we have a wiki available!
           </div>
           <div class="flex justify-center">
-            <button
-                class="intro-x button button--lg border border-white dark:border-dark-5 dark:text-gray-300 mt-10 mr-20 bg-theme-1"
+            <a
+                :href="discordLink"
+                target="_blank"
+                class="w-64 intro-x button button--lg border border-white dark:border-dark-5 dark:text-gray-300 mt-10 bg-theme-1"
             >
                 Open Discord Link
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -26,6 +28,7 @@
 </template>
   
 <script>
+import axios from 'axios';
 
 
 export default {
@@ -33,10 +36,21 @@ components: {
 },
 data() {
     return {
-    salesReportFilter: ""
+    salesReportFilter: "",
+    discordLink: ''
     };
 },
+mounted(){
+  this.getDiscordLink();
+},  
 methods: {
+  getDiscordLink(){
+    let self = this;
+    axios.get('/api/getDiscordLink')
+      .then((res)=>{
+        self.discordLink = res.data.discordLink;
+      })
+  }
 }
 };
 </script>

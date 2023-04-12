@@ -25,43 +25,25 @@
       >
         <img
           alt="Midone Tailwind HTML Admin Template"
-          :src="require(`@/assets/images/${$f()[9].photos[0]}`)"
+          :src="require(`@/assets/avatars/user-2.jpg`)"
         />
       </div>
       <div class="dropdown-box w-56">
         <div
           class="dropdown-box__content box bg-theme-38 dark:bg-dark-6 text-white"
         >
-          <div class="p-4 border-b border-theme-40 dark:border-dark-3">
-            <div class="font-medium">{{ $f()[0].users[0].name }}</div>
-            <div class="text-xs text-theme-41 dark:text-gray-600">
-              {{ $f()[0].jobs[0] }}
-            </div>
-          </div>
           <div class="p-2">
             <a
-              href
+              href = "/"
               class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
             >
               <UserIcon class="w-4 h-4 mr-2" /> Profile
             </a>
             <a
-              href
+              href = "/settings"
               class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
             >
-              <EditIcon class="w-4 h-4 mr-2" /> Add Account
-            </a>
-            <a
-              href
-              class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
-            >
-              <LockIcon class="w-4 h-4 mr-2" /> Reset Password
-            </a>
-            <a
-              href
-              class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
-            >
-              <HelpCircleIcon class="w-4 h-4 mr-2" /> Help
+              <LockIcon class="w-4 h-4 mr-2" /> Settings
             </a>
           </div>
           <div class="p-2 border-t border-theme-40 dark:border-dark-3">

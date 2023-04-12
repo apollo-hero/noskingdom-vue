@@ -117,4 +117,11 @@ class AuthController extends Controller
         }
 
     }
+
+    public function logout(Request $request) {
+        session()->flush();
+
+        $res['status'] = "success";
+        return response()->json($res, 200);
+    }
 }

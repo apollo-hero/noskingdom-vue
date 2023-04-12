@@ -93,4 +93,24 @@ class SettingsController extends Controller
             return response()->json($res, 200);
         }
     }
+
+    public function getLinks(Request $request){
+        $links = DB::table('web.control')->first();
+        $download_64 = $links->site_download_launch;
+        $download_86 = $links->site_download_client;
+        $res['status'] = "success";
+        $res['download_64'] = $download_64;
+        $res['download_86'] = $download_86;
+
+        return response()->json($res, 200);
+    }
+
+    public function getDiscordLink(Request $request){
+        $links = DB::table('web.control')->first();
+        $discord_link = $links->site_link_support;
+        $res['status'] = "success";
+        $res['discordLink'] = $discord_link;
+
+        return response()->json($res, 200);
+    }
 }

@@ -187,6 +187,7 @@
 
 import axios from 'axios';
 import ImageZoom from './ImageZoom.vue';
+import Toastify from "toastify-js";
 
 export default {
   components: { ImageZoom },
@@ -205,6 +206,7 @@ export default {
     mounted(){
         this.getCategories();
         this.getShopItems();
+        this.getCharacters();
     }, 
     methods : {
         getCategories(){
@@ -239,6 +241,49 @@ export default {
 
         buy() {
             let self = this;
+            if(!self.character){
+                Toastify({
+                    text: "please select the character!",
+                    duration: 3000,
+                    newWindow: true,
+                    close: false,
+                    gravity: "bottom",
+                    position: "center",
+                    backgroundColor: "#e80404",
+                    stopOnFocus: true
+                }).showToast();
+                return;
+            }
+            
+
+            if(self.item.price * self.quantity > self.$store.state.main.user.Coins){
+                Toastify({
+                    text: "The coins is not enough!",
+                    duration: 3000,
+                    newWindow: true,
+                    close: false,
+                    gravity: "bottom",
+                    position: "center",
+                    backgroundColor: "#e80404",
+                    stopOnFocus: true
+                }).showToast();
+                return;
+            }
+
+            if(self.quantity < 1){
+                Toastify({
+                    text: "The quantity should be greater than 1!",
+                    duration: 3000,
+                    newWindow: true,
+                    close: false,
+                    gravity: "bottom",
+                    position: "center",
+                    backgroundColor: "#e80404",
+                    stopOnFocus: true
+                }).showToast();
+                return;
+            }
+
             self.loading = true;
 
         }

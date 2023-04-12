@@ -13,16 +13,20 @@
             Download the game to start playing!
           </div>
           <div class="flex justify-center">
-            <button
+            <a
+                :href="download_64"
+                target="_blank"
                 class="intro-x button button--lg border border-white dark:border-dark-5 dark:text-gray-300 mt-10 mr-20 bg-theme-1"
             >
                 Download x64 version
-            </button>
-            <button
+            </a>
+            <a
+                :href="download_86"
+                target="_blank"
                 class="intro-x button button--lg border border-white dark:border-dark-5 dark:text-gray-300 mt-10 bg-theme-1"
             >
                 Download x86 version
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -31,17 +35,30 @@
 </template>
   
 <script>
-
+import axios from 'axios';
 
 export default {
 components: {
 },
 data() {
     return {
-    salesReportFilter: ""
+    salesReportFilter: "",
+    download_64: '',
+    download_86: ''
     };
 },
+mounted(){
+  this.getLinks();
+},
 methods: {
+  getLinks(){
+    let self = this;
+    axios.get('/api/getLinks')
+      .then((res)=>{
+        self.download_64 = res.data.download_64;
+        self.download_86 = res.data.download_86;
+      })
+  }
 }
 };
 </script>
