@@ -17,7 +17,11 @@ class ShopController extends Controller
     }
 
     public function getShopItems(Request $request){
-        $shopItems = DB::table('web.shopitems')->where('visibility', 1)->orderBy('number_p')->limit(25)->get();
+        $perPage = $request->query('per_page', 20);
+        $shopItems = DB::table('web.shopitems')
+                        ->where('visibility', 1)
+                        ->orderBy('number_p')
+                        ->get();
         $res['status'] = "success";
         $res['shopItems'] = $shopItems;
         return response()->json($res,200);

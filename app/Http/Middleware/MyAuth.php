@@ -17,7 +17,7 @@ class MyAuth
     public function handle(Request $request, Closure $next)
     {
         if(!session()->get('USER_ID')){
-            return response()->json(['status'=>'error','message' => 'Unauthenticated.'], 401);
+            return response()->json(['status'=>'error','message' => 'Unauthenticated.'], 200);
         }
         return $next($request);
     }
